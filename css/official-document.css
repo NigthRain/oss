@@ -1,0 +1,400 @@
+/* =================================================================
+ * Typora Theme: MS WORD
+ * Author: Gemini
+ * Description: A custom theme for Typora based on user specifications.
+ * ================================================================= */
+
+/* ---
+  * 1. Root Variables & Basic Setup (根变量与基础设置)
+  * --- */
+:root {
+    --bg-color: #F5F6FA; /* 页面背景色 */
+    --side-bar-bg-color: #F5F6FA; /* 侧边栏背景色 */
+    --writing-area-bg-color: #F4F4F4; /* 书写区背景色 */
+    --text-color: #432913; /* 默认文字颜色 */
+    --link-color: #02AAF4; /* 超链接颜色 */
+    --link-hover-bg: #02AAF4; /* 超链接悬停背景色 */
+    --link-hover-text: #FFFFFF; /* 超链接悬停文字颜色 */
+    --selection-color: #C6C6C6; /* 选中文字背景色 */
+    --strong-color: #EE0000; /* 粗体文字颜色 */
+    --inline-code-bg: #FFFF00; /* 行内代码背景色 */
+    --code-block-bg: #F4FCFF; /* 代码块背景色 */
+    --blockquote-bg: #F4FCFF; /* 引用块背景色 */
+    --blockquote-border-color: #AFAAA1; /* 引用块左侧竖条颜色 */
+    --table-hover-bg: #C6C6C6; /* 表格悬停行背景色 */
+
+    /* Font Families (字体族) */
+    --font-family-fangsong: "Times New Roman", "方正仿宋_GBK", "方正仿宋简体", "仿宋", serif;
+    --font-family-xiaobiaosong: "Times New Roman", "方正小标宋_GBK", "方正小标宋简体", serif;
+    --font-family-heiti: "Times New Roman", "方正黑体_GBK", "方正黑体简体", sans-serif;
+    --font-family-kaiti: "Times New Roman", "方正楷体_GBK", "方正楷体简体", serif;
+    --font-family-shusong: "Times New Roman", "方正书宋_GBK", "方正书宋简体", serif;
+    --font-family-code: "LXGW Bright Code GB", "Sarasa Term Slab SC", "文泉驿等宽正黑", monospace;
+
+    /* Page Layout (页面布局) */
+    --sidebar-width: 320px;
+    --writing-area-width: 900px;
+    --content-width: 784px;
+}
+
+/* 设置根字体大小, 使 1rem = 16px */
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-family-fangsong);
+    font-size: 1.75rem; /* 28px */
+    line-height: 3rem; /* 48px */
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    counter-reset: h2; /* 初始化H2计数器 */
+}
+
+/* ---
+  * 2. Page Layout (页面布局)
+  * --- */
+
+/* 侧边栏 */
+#typora-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--side-bar-bg-color);
+}
+
+/* 书写区 */
+.typora-main-container {
+    background-color: var(--writing-area-bg-color);
+}
+
+#write {
+    max-width: var(--writing-area-width);
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--writing-area-bg-color);
+}
+
+/* 内容区居中对称 */
+#write > *:not(.md-rawblock) {
+    max-width: var(--content-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ---
+  * 3. General Element Styles (通用元素样式)
+  * --- */
+
+/* 选中文字样式 */
+::selection {
+    background: var(--selection-color);
+}
+
+/* 超链接样式 */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    padding: 2px 4px;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover-text);
+    background-color: var(--link-hover-bg);
+    border-radius: 4px;
+}
+
+/* 正文段落 */
+p {
+    text-align: left;
+    text-indent: 2em; /* 首行缩进2字符 */
+    margin-top: 0;
+    margin-bottom: 0; /* 段落间距为0 */
+}
+
+/* 图片 */
+img {
+    display: block;
+    margin: 20px auto;
+    width: 700px !important; /* 强制宽度 */
+    max-width: 700px !important;
+}
+
+/* 粗体 */
+strong, b {
+    font-weight: bold;
+    color: var(--strong-color);
+}
+
+/* 行内代码 */
+#write :not(pre) > code {
+    background-color: var(--inline-code-bg);
+    font-family: var(--font-family-fangsong);
+    font-size: 1.75rem; /* 28px */
+    color: var(--text-color);
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+/* 代码块 */
+.md-fences, pre {
+    font-family: var(--font-family-code);
+    font-size: 20px;
+    line-height: 2rem;
+    background-color: var(--code-block-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.md-fences .code-tooltip {
+    font-family: var(--font-family-code);
+}
+.md-fences ::selection {
+    background: var(--selection-color);
+}
+
+
+/* 引用 */
+blockquote {
+    font-family: var(--font-family-kaiti);
+    font-size: 20px;
+    background-color: var(--blockquote-bg);
+    border-left: 8px solid var(--blockquote-border-color);
+    padding: 1rem 1.5rem;
+    margin: 2rem auto;
+    border-radius: 8px;
+    width: var(--content-width);
+}
+
+blockquote p {
+    text-indent: 0; /* 引用内段落不缩进 */
+}
+
+/* ---
+  * 4. List Optimization (列表优化)
+  * --- */
+  
+/* 设置所有列表的左侧间距，以控制序号、符号和待办事项的位置 */
+ul, ol, .task-list {
+    list-style-position: outside;
+    padding-left: 28px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* 为列表项文字设置首行缩进，使其与正文段落样式保持一致 */
+/* 84px (文字总缩进) - 56px (列表标记缩进) = 28px */
+li, .task-list-item {
+    text-indent: 0px;
+    padding-left: 0px;
+}
+
+
+/* ---
+  * 5. Headers (各级标题样式)
+  * --- */
+
+/* H1 标题 */
+h1 {
+    font-family: var(--font-family-xiaobiaosong);
+    font-size: 38px;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 10px;
+    margin: 40px auto;
+    width: var(--content-width);
+}
+
+/* H2 标题 */
+h2 {
+    font-family: var(--font-family-heiti);
+    font-size: 1.75rem; /* 28px */
+    text-align: left;
+    text-indent: 2em;
+    counter-increment: h2; /* H2计数器+1 */
+    counter-reset: h3 h4; /* 重置H3, H4计数器 */
+}
+h2:before {
+    content: counter(h2, cjk-ideographic) "、"; /* 显示 "一、", "二、" ... */
+    margin-right: 0.25em;
+}
+
+/* H3 标题 */
+h3 {
+    font-family: var(--font-family-kaiti);
+    font-size: 1.75rem; /* 28px */
+    text-align: left;
+    text-indent: 2em;
+    counter-increment: h3; /* H3计数器+1 */
+    counter-reset: h4; /* 重置H4计数器 */
+}
+h3:before {
+    content: "（" counter(h3, cjk-ideographic) "）"; /* 显示 "（一）", "（二）" ... */
+    margin-right: 0.25em;
+}
+
+/* H4 标题 */
+h4 {
+    font-family: var(--font-family-fangsong);
+    font-weight: bold;
+    font-size: 1.75rem; /* 28px */
+    text-align: left;
+    text-indent: 2em;
+    counter-increment: h4; /* H4计数器+1 */
+}
+h4:before {
+    content: counter(h4) ". "; /* 显示 "1. ", "2. " ... */
+}
+
+/* H5 标题 */
+h5 {
+    font-family: var(--font-family-heiti);
+    font-size: 24px;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* H6 标题 */
+h6 {
+    font-family: var(--font-family-fangsong);
+    font-size: 1.75rem; /* 28px */
+    text-align: left;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* ---
+  * 6. Tables (表格样式)
+  * --- */
+table {
+    border-collapse: collapse;
+    margin: 2rem auto;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+    font-size: 24px;
+    text-align: center;
+}
+
+thead th {
+    font-family: var(--font-family-heiti);
+    text-transform: uppercase;
+    background-color: #f0f0f0;
+}
+
+tbody td {
+    font-family: var(--font-family-shusong);
+}
+
+tbody tr:hover {
+    background-color: var(--table-hover-bg);
+}
+
+/* ---
+  * 7. Sidebar Outline (侧边栏大纲)
+  * --- */
+.outline-container {
+    font-size: 1rem !important; /* 强制字号 */
+}
+
+.outline-h1,
+.outline-h5,
+.outline-h6 {
+    display: none; /* 隐藏H1, H5, H6 */
+}
+
+.outline-h2 .outline-label {
+    padding-left: 0em; /* H2无缩进 */
+}
+
+.outline-h3 .outline-label {
+    padding-left: 1em; /* H3缩进1em */
+}
+
+.outline-h4 .outline-label {
+    padding-left: 2em; /* H4缩进2em */
+}
+
+
+/* ---
+  * 8. Export Settings (导出设置)
+  * --- */
+@media print {
+    @page {
+        size: A4;
+        margin-top: 37mm;
+        margin-bottom: 28mm;
+        margin-left: 28mm;
+        margin-right: 26mm;
+
+        /* 使用CSS Paged Media Module添加页码 */
+        @bottom-right {
+            content: counter(page);
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            color: #333;
+        }
+    }
+
+    html {
+        font-size: 16pt; /* 基准字号为三号字(16pt) */
+    }
+
+    body, #write {
+        font-family: var(--font-family-fangsong);
+        line-height: 1.7; /* 调整行高以适应打印 */
+        color: #000;
+        background-color: #fff;
+    }
+
+    #write {
+        max-width: 156mm; /* 版心宽度 */
+        padding: 0;
+        margin: 0;
+    }
+
+    /* 在打印模式下，所有元素的颜色都恢复默认，避免彩色打印 */
+    * {
+        color: #000 !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a, a:visited {
+        text-decoration: underline;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+    }
+
+    blockquote, table, pre {
+        page-break-inside: avoid;
+    }
+    
+    /* 确保标题下划线在打印时也为黑色 */
+    h1 {
+        border-bottom-color: #000 !important;
+    }
+
+    /* 确保引用边框在打印时也为黑色 */
+    blockquote {
+        border-left-color: #000 !important;
+    }
+
+    /* 确保表格边框在打印时也为黑色 */
+    th, td {
+        border: 1px solid #000 !important;
+    }
+}
