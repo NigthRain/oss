@@ -1,0 +1,330 @@
+
+/* 根设置与变量定义 */
+:root {
+    /* -- 颜色变量 -- */
+    --bg-color: #F5F6FA;               /* 页面背景色 */
+    --side-bar-bg-color: #F5F6FA;       /* 侧边栏背景色 */
+    --writing-area-bg-color: #F4F4F4; /* 书写区背景色 */
+    --text-color: #432913;              /* 默认文字颜色 */
+    --strong-text-color: #EE0000;       /* 粗体文字颜色 */
+    --link-color: #02AAF4;              /* 超链接颜色 */
+    --link-hover-text-color: #FFFFFF;   /* 超链接悬停文字颜色 */
+    --link-hover-bg-color: #02AAF4;      /* 超链接悬停背景颜色 */
+    --selection-bg-color: #C6C6C6;      /* 选中文字背景色 */
+    --code-block-bg-color: #F4FCFF;      /* 代码块背景色 */
+    --inline-code-bg-color: #FFFF00;    /* 行内代码背景色 */
+    --blockquote-bg-color: #F4FCFF;     /* 引用块背景色 */
+    --blockquote-border-color: #AFAAA1; /* 引用块左侧竖条颜色 */
+    --table-hover-bg-color: #C6C6C6;     /* 表格悬停行背景色 */
+
+    /* -- 字体变量 -- */
+    --font-family-default: "朱雀仿宋", "Zhuque Fangsong", "STFangsong", "FangSong", serif;
+    --font-family-paragraph: "Adobe Song", "方正屏显雅宋简体", "Noto Serif SC", "Source Han Serif", serif;
+    --font-family-h1: "猫啃网文明宋", "Maoken Wenming Song", "钉钉进步体", "DingTalk Jinbu", sans-serif;
+    --font-family-h2: "霞鹜新晰黑", "LXGW Neo XiHei", sans-serif;
+    --font-family-h3: "霞鹜文楷", "LXGW WenKai Screen", "LXGW WenKai GB", cursive;
+    --font-family-h4: var(--font-family-paragraph);
+    --font-family-h5: "霞鹜新晰黑", "LXGW Neo XiHei", sans-serif;
+    --font-family-h6: "方正清仿宋", "FZQingFangSong", serif;
+    --font-family-code: "Sarasa Term Slab SC", monospace;
+    --font-family-table-header: var(--font-family-h2);
+    --font-family-table-body: var(--font-family-paragraph);
+    --font-family-blockquote: var(--font-family-default);
+    --font-family-times: "Times New Roman", Times, serif;
+
+    /* -- 尺寸变量 -- */
+    --sidebar-width: 320px;
+    --writing-area-width: 900px;
+    --content-width: 792px;
+    --image-width: 750px;
+    --blockquote-text-width: 720px;
+
+    /* -- 打印导出变量 -- */
+    --page-margin-top: 37mm;
+    --page-margin-bottom: 28mm;
+    --page-margin-left: 28mm;
+    --page-margin-right: 26mm;
+    --version-heart-width: 156mm; /* 版心宽度 */
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family-default);
+    font-size: 20px;
+    line-height: 36px;
+    counter-reset: h2-counter h3-counter h4-counter;
+}
+
+#typora-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--side-bar-bg-color);
+}
+
+#write {
+    max-width: var(--writing-area-width);
+    background-color: var(--writing-area-bg-color);
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+#write > *:not(h1):not(h5) {
+    max-width: var(--content-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+::selection {
+    background: var(--selection-bg-color);
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover-text-color);
+    background-color: var(--link-hover-bg-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* 段落样式 */
+p {
+    font-family: var(--font-family-paragraph);
+    font-size: 22px;
+    line-height: 1.8;
+    text-indent: 2em;
+    text-align: left;
+    margin: 0; /* 取消段落上下间距 */
+}
+
+/* 列表样式 */
+ul, ol {
+    margin: 0.5em 0; /* 调整列表整体间距 */
+    padding-left: 2em;
+}
+
+li {
+    margin: 0; /* 取消列表项间距 */
+}
+
+li p {
+    margin: 0; /* 取消列表项中段落的间距 */
+    text-indent: 0; /* 取消列表项中段落的缩进 */
+}
+
+/* 标题样式 */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+    margin: 0.5em 0; /* 统一设置标题上下间距 */
+}
+
+h1 {
+    font-family: var(--font-family-h1);
+    font-size: 28px;
+    text-transform: uppercase;
+    text-align: center;
+    text-indent: 0;
+    max-width: 100%;
+}
+
+h2 {
+    font-family: var(--font-family-h2);
+    font-size: 22px;
+    text-align: left;
+    text-indent: 2em;
+    counter-reset: h3-counter h4-counter;
+}
+h2:before {
+    content: counter(h2-counter, cjk-ideographic) "、";
+    counter-increment: h2-counter;
+    margin-right: 0.25em;
+    margin-left: -2em;
+}
+
+h3 {
+    font-family: var(--font-family-h3);
+    font-size: 22px;
+    text-align: left;
+    text-indent: 2em;
+    counter-reset: h4-counter;
+}
+h3:before {
+    content: "（" counter(h3-counter, cjk-ideographic) "）";
+    counter-increment: h3-counter;
+    margin-right: 0.25em;
+    margin-left: -2em;
+}
+
+h4 {
+    font-family: var(--font-family-h4);
+    font-weight: bold;
+    font-size: 22px;
+    text-align: left;
+    text-indent: 2em;
+}
+h4:before {
+    content: counter(h4-counter) ". ";
+    counter-increment: h4-counter;
+    margin-right: 0.25em;
+    margin-left: -2em;
+}
+
+h5 {
+    font-family: var(--font-family-h5);
+    font-size: 22px;
+    text-align: center;
+    text-indent: 0;
+    max-width: 100%;
+}
+
+h6 {
+    font-family: var(--font-family-h6);
+    font-size: 22px;
+    text-align: left;
+    text-indent: 0;
+}
+
+img {
+    display: block;
+    margin: 2rem auto;
+    width: var(--image-width) !important;
+    max-width: 100%;
+}
+
+strong {
+    font-weight: bold;
+    color: var(--strong-text-color);
+}
+
+:not(pre) > code {
+    font-family: var(--font-family-paragraph);
+    font-size: 22px;
+    background-color: var(--inline-code-bg-color);
+    padding: 2px 4px;
+    border-radius: 3px;
+    color: var(--text-color);
+}
+
+pre, .md-fences {
+    font-family: var(--font-family-code);
+    font-size: 20px;
+    line-height: 2rem;
+    background-color: var(--code-block-bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 0.5em 0;
+}
+
+blockquote {
+    font-family: var(--font-family-blockquote);
+    font-size: 20px;
+    max-width: var(--blockquote-text-width);
+    background-color: var(--blockquote-bg-color);
+    border-left: 4px solid var(--blockquote-border-color);
+    border-radius: 3px;
+    padding: 1em;
+    margin: 0.5em auto;
+}
+
+blockquote p {
+    margin: 0;
+}
+
+/* 表格样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5em 0;
+    font-size: 20px;
+    text-align: center;
+}
+
+table thead {
+    font-family: var(--font-family-table-header);
+    text-transform: uppercase;
+}
+
+table tbody {
+    font-family: var(--font-family-table-body);
+}
+
+table th,
+table td {
+    border: 1px solid #000;
+    padding: 0.3em 0.5em;
+    line-height: 1.4; /* 减小表格行间距 */
+}
+
+table tr:hover {
+    background-color: var(--table-hover-bg-color);
+}
+
+table p {
+    margin: 0;
+    text-indent: 0;
+    line-height: 1.4; /* 减小表格中段落的行间距 */
+}
+
+/* 打印样式 */
+@media print {
+    body {
+        background-color: #FFFFFF !important;
+        color: #000000;
+    }
+    
+    #write {
+        background-color: transparent !important;
+    }
+
+    /* 超链接颜色 */
+    a {
+        color: #02AAF4 !important;
+        background-color: transparent !important;
+    }
+
+    /* 加粗文字颜色 */
+    strong {
+        color: #EE0000 !important;
+    }
+
+    /* 行内代码背景色 */
+    :not(pre) > code {
+        background-color: #FFFF00 !important;
+    }
+
+    /* 代码块背景色 */
+    pre, .md-fences {
+        background-color: #F4FCFF !important;
+    }
+
+    /* 引用块背景色 */
+    blockquote {
+        background-color: #F4FCFF !important;
+    }
+
+    /* 字号设置 */
+    h1 { font-size: 16pt; }
+    h2, h3, h4, h6, p { font-size: 14pt; }
+    h5, table, blockquote { font-size: 12pt; }
+    pre, .md-fences { font-size: 11pt; }
+}
+
+.outline-h1,
+.outline-h5,
+.outline-h6 {
+    display: none !important;
+}
+
+.outline-h2,
+.outline-h3,
+.outline-h4 {
+    display: block;
+}
